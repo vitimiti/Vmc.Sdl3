@@ -4,5 +4,49 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsRidAgnostic>false</IsRidAgnostic>
   </PropertyGroup>
+
+  <Target
+    Name="SelectSdlNativeLibrary"
+    BeforeTargets="AssignTargetPaths"
+    Condition="'$(DesignTimeBuild)' != 'true'"
+  >
+    <PropertyGroup>
+      <_SdlRuntimeIdentifier Condition="'$(RuntimeIdentifier)' != ''"
+        >$(RuntimeIdentifier)</_SdlRuntimeIdentifier>
+      <_SdlRuntimeIdentifier Condition="'$(_SdlRuntimeIdentifier)' == ''"
+        >$(NETCoreSdkRuntimeIdentifier)</_SdlRuntimeIdentifier>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_SdlNativeLibrary
+        Include="runtimes\$(_SdlRuntimeIdentifier)\SDL3.dll"
+        Condition="Exists('runtimes\$(_SdlRuntimeIdentifier)\SDL3.dll')"
+      />
+      <_SdlNativeLibrary
+        Include="runtimes\$(_SdlRuntimeIdentifier)\libSDL3.so.0"
+        Condition="Exists('runtimes\$(_SdlRuntimeIdentifier)\libSDL3.so.0')"
+      />
+      <_SdlNativeLibrary
+        Include="runtimes\$(_SdlRuntimeIdentifier)\libSDL3.0.dylib"
+        Condition="Exists('runtimes\$(_SdlRuntimeIdentifier)\libSDL3.0.dylib')"
+      />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="@(_SdlNativeLibrary)" />
+      <None
+        Include="@(_SdlNativeLibrary)"
+        Link="%(_SdlNativeLibrary.Filename)%(_SdlNativeLibrary.Extension)"
+        CopyToOutputDirectory="Always"
+        CopyToPublishDirectory="Always"
+      />
+    </ItemGroup>
+
+    <Warning
+      Condition="'@(_SdlNativeLibrary)' == ''"
+      Text="SDL3 has no bundled native library for RID '$(_SdlRuntimeIdentifier)'. This system has no direct support; provide your own native SDL3 library."
+    />
+  </Target>
 </Project>
