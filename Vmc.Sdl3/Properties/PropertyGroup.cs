@@ -252,9 +252,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -302,9 +302,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -358,9 +358,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -408,9 +408,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -458,9 +458,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -508,9 +508,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -717,9 +717,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -763,9 +763,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
@@ -797,9 +797,9 @@ public class PropertyGroup : IDisposable
             error = null;
             return true;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            error = Sdl.GetError();
+            error = ex.Message;
             return false;
         }
     }
